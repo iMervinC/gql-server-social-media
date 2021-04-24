@@ -17,6 +17,7 @@ const postSchema = new mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    createdAt: String,
   },
   {
     timestamps: true,

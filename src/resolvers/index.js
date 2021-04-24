@@ -1,15 +1,13 @@
-import Post from '../models/Post.js'
+import { getPosts } from './posts.js'
+import { register, login } from './users.js'
 
 const resolvers = {
   Query: {
-    getPosts: async () => {
-      try {
-        const posts = await Post.find({})
-        return posts
-      } catch (err) {
-        throw new Error(err)
-      }
-    },
+    getPosts,
+  },
+  Mutation: {
+    register,
+    login,
   },
 }
-export { resolvers }
+export default resolvers

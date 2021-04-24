@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
 import { typeDefs } from './schema.js'
-import { resolvers } from './resolvers/index.js'
+import resolvers from './resolvers/index.js'
 
 dotenv.config()
 
