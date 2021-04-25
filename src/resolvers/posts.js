@@ -1,12 +1,24 @@
 import Post from '../models/Post.js'
 
 const getPosts = async () => {
+  const posts = await Post.find({})
+  return posts
+}
+
+const getPost = async (_, { postId }) => {
   try {
-    const posts = await Post.find({})
-    return posts
+    const post = await Post.findById(postId)
+    if (post) {
+      return post
+    } else {
+      throw new Error('Post not found')
+    }
   } catch (err) {
     throw new Error(err)
   }
 }
 
-export { getPosts }
+const createPost = async () => {}
+const deletePost = async () => {}
+
+export { getPosts, getPost, deletePost, createPost }
