@@ -7,7 +7,11 @@ import resolvers from './resolvers/index.js'
 
 dotenv.config()
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ req }),
+})
 
 mongoose
   .connect(process.env.MONGO_URI, {
