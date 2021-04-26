@@ -1,5 +1,6 @@
-import { getPosts, getPost, createPost, deletePost } from './posts.js'
 import { register, login } from './users.js'
+import { getPosts, getPost, createPost, deletePost } from './posts.js'
+import { createComment, deleteComment } from './comments.js'
 
 const resolvers = {
   Query: {
@@ -11,6 +12,8 @@ const resolvers = {
     login,
     deletePost,
     createPost,
+    createComment,
+    deleteComment,
   },
 }
 export default resolvers
