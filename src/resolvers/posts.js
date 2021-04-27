@@ -32,6 +32,10 @@ const createPost = async (_, { body }, context) => {
 
   const post = await newPost.save()
 
+  // context.pubsub.publish('NEW_POST', {
+  //   newPost: post,
+  // })
+
   return post
 }
 

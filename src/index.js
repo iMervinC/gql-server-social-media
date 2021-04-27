@@ -8,9 +8,10 @@ import resolvers from './resolvers/index.js'
 dotenv.config()
 
 const server = new ApolloServer({
+  introspection: true,
   typeDefs,
   resolvers,
-  context: ({ req }) => ({ req }),
+  context: ({ req }) => ({ req, pubsub }),
 })
 
 mongoose
@@ -20,7 +21,7 @@ mongoose
   })
   .then(() => {
     console.log(`🍁 Connected to DB`)
-    return server.listen()
+    return server.listen({ port: process.env.PORT || 4000 })
   })
   .then((res) => {
     console.log(`
