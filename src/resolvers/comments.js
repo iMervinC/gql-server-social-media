@@ -43,4 +43,29 @@ const deleteComment = async (_, { postId, commentId }, context) => {
   } else throw new UserInputError('Post not found')
 }
 
-export { createComment, deleteComment }
+const likePost = async (_, { postId }, context) => {
+  const { username } = auth(context)
+
+  try {
+    const post = await Post.findById(postId)
+
+    const likeUser = post.likes.findIndex((c) => c.username === username)
+
+    if (likeUser < 0) {
+      post.likes.push({
+        username,
+        createdAt: new Date().toISOString(),
+      })
+      await post.save()
+      return post
+    } else {
+      post.likes.splice(likeUser, 1)
+      await post.save()
+      return post
+    }
+  } catch (error) {
+    throw new AuthenticationError('Action not allowed')
+  }
+}
+
+export { createComment, deleteComment, likePost }
