@@ -9,6 +9,7 @@ dotenv.config()
 
 const server = new ApolloServer({
   introspection: true,
+  playground: true,
   typeDefs,
   resolvers,
   context: ({ req }) => ({ req }),
