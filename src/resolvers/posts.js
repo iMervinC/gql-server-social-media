@@ -43,7 +43,7 @@ const deletePost = async (_, { postId }, context) => {
 
     if (post.username === user.username) {
       await post.delete()
-      return 'Post deleted'
+      return { postId: post.id, status: 'Post deleted!' }
     } else {
       throw new AuthenticationError("This is not your's to take away!")
     }
