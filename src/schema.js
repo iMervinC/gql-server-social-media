@@ -43,11 +43,16 @@ export const typeDefs = gql`
     getPost(postId: ID!): Post
   }
 
+  type DeletedPost {
+    postId: ID!
+    status: String!
+  }
+
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
     createPost(body: String!): Post!
-    deletePost(postId: ID!): {postId: ID!, status: String!}
+    deletePost(postId: ID!): DeletedPost!
 
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
